@@ -1,0 +1,36 @@
+#!/bin/bash
+# A script shell extracting information from a file
+
+tput clear
+
+the_user=`whoami`
+
+echo "Enter a file name:"
+read fname
+if [ -z "$fname" ]
+then
+    exit
+fi
+
+terminal=`tty`
+
+exec < $fname
+
+count=1
+
+while read line
+do
+    echo $count.$line
+    count=`expr $count + 1`
+done
+
+exec < $terminal
+
+printf "\nWell done $the_user!\n\n"
+
+
+# End of program
+exit 0
+
+# exit $? to exit the program on last command
+# exit 0 to exit the program

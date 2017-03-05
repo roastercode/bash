@@ -1,0 +1,24 @@
+#!/bin/bash
+# A shell script that create strings and verify the strings with comparaison operator
+
+tput clear
+
+str1="That is a bash string"
+str2="That is another bash or not? |[{#"
+str3="" # an empty string
+
+[ "$str1" = "$str2" ]
+echo $?
+
+[ "$str1" != "$str2" ]
+echo $?
+
+[ -n "$str3" ]
+echo $?
+
+[ -z "$str3" ]
+echo $?
+
+
+# End of program
+exit 0

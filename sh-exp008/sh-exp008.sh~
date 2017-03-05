@@ -1,0 +1,23 @@
+#!/bin/bash
+# Create a timer in crontab without knowledge
+
+echo "Create your timer (24h)"
+touch /etc/cron.hourly/timer
+echo "hour?"
+read Hour
+echo "Minutes?"
+read Minutes
+echo "#!/bin/sh" >> /etc/cron.hourly/timer
+echo "env DISPLAY=:0.0 /usr/bin/cvlc /home/aurelien/Music/space-oddity.mp4" >> /etc/cron.hourly/timer
+chmod +x /etc/cron.hourly/timer
+echo "Your timer is set to $Hour:$Minutes"
+
+
+#echo "Write a file name"
+#read name
+#touch $name
+#echo "Writing in the file..." >> $name
+#cat $name
+
+# End of the program
+exit 0
