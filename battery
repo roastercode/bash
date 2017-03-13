@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DIR="/sys/class/power_supply/BAT0"
+STATUS=$(cat "$DIR/status")
+
+if [ "$STATUS" == "Discharging" ]
+then
+        for PREFIX in "charge" "energy"
+        do
+                if [ -f "$DIR/${PREFIX}_now" ] && [ -f "$DIR/${PREFIX}_full" ]
+                then
+                        REMAIN=$(cat "$DIR/${PREFIX}_now")
+                        FULL=$(cat "$DIR/${PREFIX}_full")
+                        PRCT=$((100 * $REMAIN / $FULL))
+                        if [ $PRCT -le 15 ]
+                        then
+				espeak "This is an emergency, This is an emergency, battery $PRCT percent, save, me"
+			fi
+			break
+		fi
+	done
+fi
