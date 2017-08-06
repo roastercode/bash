@@ -1,5 +1,6 @@
 #!/bin/bash
 # Use nmcli command line with secure envirronement variables
+tput clear
 
 # List wifi avaibable around
 nmcli device wifi
@@ -14,3 +15,5 @@ read -s password
 
 # Run Command
 nmcli device wifi connect $id password $password
+
+exit 0
