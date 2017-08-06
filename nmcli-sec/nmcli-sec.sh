@@ -6,7 +6,7 @@ nmcli device wifi
 
 # Chose the network
 echo -n Select the Network Id:
-read  id
+read id
 
 # Read Password
 echo -n Password:
