@@ -1,4 +1,7 @@
 #!/bin/bash
+# author: Aurélien DESBRIÈRES <aurelien(at)hackers(dot)camp
+# license: GPL v2 or later
+
 # Use nmcli command line with secure envirronement variables
 tput clear
 
