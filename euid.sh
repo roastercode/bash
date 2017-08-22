@@ -6,7 +6,7 @@
 
 err()
 {
-    echo >&2 $"(tput bold; tput setaf 1)""[-] ERROR: ${*}"$"(tput sgr0)"
+    echo >&2 `tput bold; tput setaf 1`"[-] ERROR: ${*}"`tput sgr0`
     exit 1337
 }
 
