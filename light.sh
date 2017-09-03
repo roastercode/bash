@@ -49,10 +49,6 @@ while true; do
 		break;;
 
 	# Minimal brightness
-	[0]* )  echo 110 > /sys/class/backlight/intel_backlight/brightness
-		break;;
-
-	# Minimal brightness
 	[]* )  echo 30 > /sys/class/backlight/intel_backlight/brightness
 		break;;
     esac
