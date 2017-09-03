@@ -1,5 +1,12 @@
 #!/bin/bash
-# automate push to all servers
+# author: aurelien DESBRIERES
+# license: GPL V3 or later!
+# contact: aurelien(at)hackers(dot)camp
+
+# share configuration between servers
+
+# How-to: sudo cp populate /usr/bin/
+#         sudo chmod +x /usr/bin/populate
 
 # registration of the key
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
@@ -11,7 +18,7 @@ ssh-add -l | grep "The agent has no identities" && ssh-add
 
 # Send the stuff
 cd ~/
-scp command.md .emacs icecloud:~/
-scp command.md .emacs icebreaker:~/
-scp command.md .emacs subair:~/
+scp command.md .bashrc .emacs icecloud:~/
+scp command.md .bashrc .emacs icebreaker:~/
+scp command.md .bashrc .emacs subair:~/
 printf "done!\n"
