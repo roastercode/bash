@@ -28,7 +28,12 @@ cp ~/.bash_profile ~/backsync/
 cp ~/.bashrc ~/backsync/
 cp ~/.emacs ~/backsync/
 cp ~/*.md ~/backsync/
+cp -r ~/.ssh/ ~/backsync/
+cp -r ~/.gnupg/ ~/backsync/
+cp -r ~/.w3m/ ~/backsync/
+cp ~/.vimrc ~/backsync/
 
+# Compress the stuff
 tar czvf ~/backsync.tar.gz ~/backsync/
 
 # Encrypt the stuff before sending
