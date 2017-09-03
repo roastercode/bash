@@ -1,0 +1,17 @@
+#!/bin/bash
+# automate push to all servers
+
+# registration of the key
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+    eval "$(ssh-agent)"
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l | grep "The agent has no identities" && ssh-add
+
+# Send the stuff
+cd ~/
+scp command.md .emacs icecloud:~/
+scp command.md .emacs icebreaker:~/
+scp command.md .emacs subair:~/
+printf "done!\n"
