@@ -3,7 +3,15 @@
 # License: GPL v2 or later
 # Author: Aurélien DESBRIÈRES
 # mail: aurelien(at)hackers(dot)camp
+
+# adjustment:
+# chown user:root /sys/class/backlight/intel_backlight/brightness
+# cp light.sh /usr/bin/light
+# chmod +x /usr/bin/light
+
+
 # light 1 light 2 ...
+
 
 while true; do
     case $1234567890 in
