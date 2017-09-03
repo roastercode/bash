@@ -4,6 +4,9 @@
 # Contact: aurelien(at)hackers(dot)camp
 # License: GPL V3 or later
 
+# How-to: sudo cp backsync.sh /usr/bin/backsync
+#         sudo chmod +x /usr/bin/backsync
+
 # Register the user identification during process
 #printf "\033[1;32m%s\nRegistering your identification during the MAAS process\033[0m%s\n"
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
@@ -24,6 +27,9 @@ rm -rf ~/.*~
 mkdir -p ~/backsync
 
 # Copy the stuff to the backup directory
+cp ~/.xinitrc ~/backsync/
+cp ~/.bash_aliases ~/backsync/
+cp ~/.bash_history ~/backsync/
 cp ~/.bash_profile ~/backsync/
 cp ~/.bashrc ~/backsync/
 cp ~/.emacs ~/backsync/
@@ -32,6 +38,9 @@ cp -r ~/.ssh/ ~/backsync/
 cp -r ~/.gnupg/ ~/backsync/
 cp -r ~/.w3m/ ~/backsync/
 cp ~/.vimrc ~/backsync/
+cp ~/.ratpoisonrc ~/backsync/
+cp ~/.Xresources ~/backsync/
+cp -r ~/.irssi/ ~/backsync/
 
 # Compress the stuff
 tar czvf ~/backsync.tar.gz ~/backsync/
