@@ -2,6 +2,11 @@
 # author: Aurélien DESBRIÈRES <aurelien(at)hackers(dot)camp
 # license: GPL v2 or later
 
+# adjustment:
+# sudo cp wifi.sh /usr/bin/wifi
+# sudo chmod +x /usr/bin/wifi
+
+
 # Use nmcli command line with secure envirronement variables
 tput clear
 
