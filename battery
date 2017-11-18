@@ -1,4 +1,6 @@
 #!/bin/bash
+# add to crontab
+# */2 * * * * /usr/bin/battery
 
 DIR="/sys/class/power_supply/BAT0"
 STATUS=$(cat "$DIR/status")
