@@ -10,54 +10,45 @@
 # chmod +x /usr/bin/light
 
 
-# light 1 light 2 ...
+# sudo light 1 ; sudo light 2 ...
 
-
-while true; do
-    case $1234567890 in
+while :
+do
+    case "$@" in
 
 	# Minimal brightness
 	[0]* )  echo 10 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# brightness
+	# brightness to 20
 	[1]* )  echo 20 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
 	[2]* )  echo 30 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
 	[3]* )  echo 40 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
 	[4]* )  echo 50 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
 	[5]* )  echo 60 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
-	[6]* )  echo 70 > /sys/class/backlight/intel_backlight/brightness
+	[6]* )  echo 80 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
-	[7]* )  echo 80 > /sys/class/backlight/intel_backlight/brightness
+	[7]* )  echo 100 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
-	[8]* )  echo 90 > /sys/class/backlight/intel_backlight/brightness
+	[8]* )  echo 130 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
-	[9]* )  echo 100 > /sys/class/backlight/intel_backlight/brightness
+	[9]* )  echo 150 > /sys/class/backlight/intel_backlight/brightness
 		break;;
 
-	# Minimal brightness
-	[]* )  echo 30 > /sys/class/backlight/intel_backlight/brightness
+	*)  echo 30 > /sys/class/backlight/intel_backlight/brightness
 		break;;
     esac
 done
