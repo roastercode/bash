@@ -1,6 +1,7 @@
 #!/bin/bash
 # add to crontab
 # */2 * * * * /usr/bin/battery
+# dependencies: espeak
 
 DIR="/sys/class/power_supply/BAT0"
 STATUS=$(cat "$DIR/status")
@@ -13,7 +14,7 @@ then
                 then
                         REMAIN=$(cat "$DIR/${PREFIX}_now")
                         FULL=$(cat "$DIR/${PREFIX}_full")
-                        PRCT=$((100 * $REMAIN / $FULL))
+                        PRCT=$((100 * REMAIN / FULL))
                         if [ $PRCT -le 15 ]
                         then
 				espeak "This is an emergency, This is an emergency, battery $PRCT percent, save, me"
