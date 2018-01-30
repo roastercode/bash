@@ -14,6 +14,7 @@ l=2
 p=$((L*l))
 printf "Perimeter is: %s\n" "$p"
 
+
 # REQUEST & SAVE : L
 # SAVE L AS A DATA
 # REQUEST : l
@@ -26,4 +27,28 @@ read L
 echo "what is l"
 read l
 p=$((L*l))
+printf "Perimeter is: %s\n" "$p"
+
+
+# PERIMETER REQUEST, DRAW & CALCULUS
+# REQUEST : L
+# SAVE L AS A DATA
+# REQUEST : l
+# SAVE L AS A DATA
+# PRINT L LINE
+# PRINT l LINE WITH THE SPACE OF L-2
+# PRINT L LINE TO CLOSE THE SQUARE/RECTANGLE
+# USE L AND l TO CALCULATE PERIMETER
+# PRINT PERIMETER BELOW THE SQUARE/RECTANGLE
+
+echo "what is L"
+read L
+echo "what is l"
+read l
+p=$((L*l))
+printf -v res %$Ls
+printf '%s\n'"${res// /-}"
+
+
+
 printf "Perimeter is: %s\n" "$p"
