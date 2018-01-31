@@ -24,7 +24,7 @@ read WIDTH
 
 # Variable definition
 PERIMETER=$((LENGHT*WIDTH))
-DESIGN=$(($LENGHT*2))
+DESIGN=$((LENGHT*2))
 
 # Drawing the stuff
 printf -v ras %"$DESIGN"s
