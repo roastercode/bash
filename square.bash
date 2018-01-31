@@ -16,17 +16,22 @@
 # USE L AND l TO CALCULATE PERIMETER
 # PRINT PERIMETER BELOW THE SQUARE/RECTANGLE
 
+# Getting elements from the users
 echo "what is Lenght"
 read LENGHT
 echo "what is Width"
 read WIDTH
+
+# Variable definition
 PERIMETER=$((LENGHT*WIDTH))
 DESIGN=$(($LENGHT*2))
+
+# Drawing the stuff
 printf -v ras %"$DESIGN"s
 printf -v res %"$WIDTH"s
-
 printf '%s\n┌'"${ras// /─}┐\n"
 printf '%s'"${res// /│${ras/// }│\n}"
 printf '%s└'"${ras// /─}┘\n"
 
-printf "Perimeter is: %s\n" "$PERIMETER"
+# Print the result to the user
+printf "Perimeter is: %s\n\n" "$PERIMETER"
