@@ -8,7 +8,7 @@
 #         sudo chmod +x /usr/bin/backsync
 
 # Register the user identification during process
-#printf "\033[1;32m%s\nRegistering your identification during the MAAS process\033[0m%s\n"
+printf "\033[1;32m%s\nRegistering your identification during the backup process\033[0m%s\n"
 if [ ! -S ~/.ssh/ssh_auth_sock ]; then
     eval "$(ssh-agent)"
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
@@ -46,7 +46,7 @@ cp -r ~/.irssi/ ~/backsync/
 tar czvf ~/backsync.tar.gz ~/backsync/
 
 # Encrypt the stuff before sending
-gpg -c ~/backsync.tar.gz
+gpg2 -c ~/backsync.tar.gz
 
 # Clean the directory
 rm -rf ~/backsync
