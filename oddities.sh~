@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Hello world" | read var1 var2
+echo $var1
+echo $var2

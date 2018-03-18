@@ -1,0 +1,111 @@
+#!/bin/bash
+# xml lib
+
+send_data() {
+    # Function definition as library
+   # AUTHOR=$(AUTHOR)
+   # REVIEWER=$(REVIEWER)
+    NAGIOS_TOKEN=$(NAGIOS_TOKEN)
+   # NRDP_CMD=$(NRDP_CMD)
+    NAGIOS_TARGET=$(NAGIOS_TARGET)
+    HOSTNAME=$(HOSTNAME)
+    PROGNAME=$(PROGNAME)
+   # LIBEXEC=$(LIBEXEC)
+   # NAGIOSOPT=$(NAGIOSOPT)
+   # STATS=$(STATS)
+    STATE=$(STATE)
+    OUTPUT=$(OUTPUT)
+   # MODE=$(MODE)
+    SERVICE=""
+
+    pdata="token=$NAGIOS_TOKEN&cmd=submitcheck"
+    if [ ! "x$curl" == "x" ];then
+
+        if [ "$FILE" ]; then
+            fdata="--data-urlencode XMLDATA@$FILE"
+            rslt=$(curl -f --silent --insecure -d "$pdata" "$fdata" "$NAGIOS_TARGET/")
+        else
+            pdata="$pdata&XMLDATA=$1"
+            rslt=$(curl -f --silent --insecure -d "$pdata" "$NAGIOS_TARGET/")
+        fi
+
+        ret=$?
+    else
+        pdata="$pdata&XMLDATA=$1"
+        rslt=$(wget -q -O - --post-data="$pdata" "$NAGIOS_TARGET/")
+        ret=$?
+    fi
+
+    status=$(echo "$rslt" | sed -n 's|.*<status>\(.*\)</status>.*|\1|p')
+    message=$(echo "$rslt" | sed -n 's|.*<message>\(.*\)</message>.*|\1|p')
+    if [ $ret != 0 ];then
+        echo "ERROR: could not connect to NRDP server at $NAGIOS_TARGET"
+        # verify we are not processing the directory already and then write to the directory
+        if [ ! "$2" ] && [ "$DIRECTORY" ];then
+            if [ ! -d "$DIRECTORY" ];then
+                mkdir -p "$DIRECTORY"
+            fi
+            # This is where we write to the tmp directory
+            echo "$XML" > "$(mktemp "$DIRECTORY/nrdp.XXXXXX")"
+        fi
+        exit 1
+    fi
+
+    if [ "$status" != "0" ];then
+        # This means we couldn't connect to NRPD server
+        echo "ERROR: The NRDP Server said $message"
+        # verify we are not processing the directory already and then write to the directory
+        if [ ! "$2" ] && [ "$DIRECTORY" ];then
+            if [ ! -d "$DIRECTORY" ];then
+                mkdir -p "$DIRECTORY"
+            fi
+            # This is where we write to the tmp directory
+            echo "$XML" > "$(mktemp "$DIRECTORY/nrdp.XXXXXX")"
+        fi
+
+        exit 2
+    fi
+
+    # If this was a directory call and was successful, remove the file
+    if [ "$2" ] && [ "$status" == "0" ];then
+        rm -f "$2"
+    fi
+
+    # If we weren't successful error
+    if [ $ret != 0 ];then
+        echo "exited with error "$ret
+        exit $ret
+    fi
+}
+
+if [ $# -eq 0 ]; then
+    usage
+    exit "$STATE_CRITICAL"
+fi
+
+# detecting curl
+if [[ $(which curl) =~ /curl ]]
+ then curl=1;
+fi
+# detecting wget if we don't have curl
+if [[ $(which wget) =~ /wget ]]
+then
+    wget=1;
+fi
+
+if [[ ! $curl && ! $wget ]];
+then
+  echo "Either curl or wget are required to run $PROGNAME"
+  exit 1
+fi
+
+passiveMode() {
+	OUTPUT=${OUTPUT//&/%26}
+	OUTPUT=${OUTPUT//</%3C}
+	OUTPUT=${OUTPUT//>/%3E}
+
+	xml="<checkresult type='service' checktype='1'><servicename>$SERVICE</servicename><hostname>$HOSTNAME</hostname><state>$STATE</state><output><![CDATA[$OUTPUT]]></output></checkresult>"
+	xml="<?xml version='1.0'?><checkresults>$xml</checkresults>"
+
+	send_data "$xml"
+}
