@@ -78,10 +78,10 @@ if [[ `getenforce 2>/dev/null` = "Enforcing" ]]; then
 fi
 
 # if [[ -f /etc/sysconfig/selinux ]]; then
-#   sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-#   echo "SELINUX=disabled" > /etc/sysconfig/selinux
-#   echo "SELINUXTYPE=targeted" >> /etc/sysconfig/selinux
-#   chmod -f 0640 /etc/sysconfig/selinux
+#	sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+#	echo "SELINUX=disabled" > /etc/sysconfig/selinux
+#	echo "SELINUXTYPE=targeted" >> /etc/sysconfig/selinux
+#	chmod -f 0640 /etc/sysconfig/selinux
 # fi
 
 
@@ -508,7 +508,7 @@ if [[ -d /usr/share/backgrounds ]]; then
 fi
 
 # if [[ $SELINUX = enforcing || $SELINUX = permissive ]]; then
-#   setenforce 1
+#	setenforce 1
 # fi
 
 # Permit ssh login from root

@@ -9,10 +9,10 @@
 # PERIMETER :  L*l
 # RESULT    :  print calculus result
 
-# # # L=3
-# # # l=2
-# # # p=$((L*l))
-# # # printf "Perimeter is: %s\n" "$p"
+L=3
+l=2
+p=$((L*l))
+printf "Perimeter is: %s\n" "$p"
 
 
 # REQUEST & SAVE : L
